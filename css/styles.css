@@ -243,8 +243,8 @@ button { cursor: pointer; background: none; border: 0; }
 .apt-card__price small { display: block; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
 .apt-card__body { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(1.5rem, 3vw, 2.5rem); }
 .apt-card__name { font-family: var(--serif); font-size: clamp(2.4rem, 1.6rem + 3vw, 4.6rem); line-height: .95; letter-spacing: -.02em; }
-.apt-card__tag { font-size: var(--t-lg); font-style: italic; font-family: var(--serif); color: var(--sea-light); margin-top: .5rem; }
-.apt-card__chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.25rem; }
+.apt-card__tag { padding-right: 72px; font-size: var(--t-lg); font-style: italic; font-family: var(--serif); color: var(--sea-light); margin-top: .5rem; }
+.apt-card__chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.25rem; padding-right: 72px; }
 .chip { font-size: .72rem; font-weight: 700; padding: .4rem .75rem; border-radius: 999px; border: 1px solid var(--line-light); background: rgba(255,255,255,.08); }
 .apt-card__go { position: absolute; right: clamp(1.5rem, 3vw, 2.5rem); bottom: clamp(1.5rem, 3vw, 2.5rem); width: 58px; height: 58px; border-radius: 50%; background: var(--white); color: var(--ink); display: grid; place-items: center; transition: transform .6s var(--ease), background .4s; }
 .apt-card__go svg { width: 22px; height: 22px; }
