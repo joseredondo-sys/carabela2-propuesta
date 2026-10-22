@@ -397,6 +397,8 @@ button { cursor: pointer; background: none; border: 0; }
 .notice svg { width: 24px; height: 24px; flex: none; color: #b7791f; margin-top: .1rem; }
 .notice b { display: block; margin-bottom: .2rem; }
 .notice p { font-size: var(--t-sm); }
+.notice--live { margin-top: .75rem; background: #e7f5f3; border-color: #8fcfc6; color: #0b4b47; }
+.notice--live svg { color: var(--sea); }
 .steps { display: flex; gap: .5rem; margin-block: 2.5rem 2rem; flex-wrap: wrap; }
 .step { display: flex; align-items: center; gap: .6rem; font-size: var(--t-sm); font-weight: 700; color: var(--ink-soft); padding: .5rem 1rem .5rem .5rem; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); }
 .step i { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-style: normal; background: var(--sand-2); font-size: .8rem; }

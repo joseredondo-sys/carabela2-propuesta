@@ -76,13 +76,13 @@ window.I18N = {
       notice: 'En la web definitiva aquí irá integrado un motor de reservas profesional de un proveedor externo (por ejemplo, Beds24), conectado con Booking.com, con pago seguro y cálculo del impuesto turístico. Esta demo no envía ningún dato ni realiza cobros.',
       title: 'Reserva tu estancia', steps: ['Fechas', 'Alojamiento', 'Tus datos', 'Confirmación'],
       selectIn: 'Selecciona tu llegada', selectOut: 'Ahora, tu salida', closed: 'Cerrado por temporada', nights: 'noches', night1: 'noche',
-      available: 'Disponibles para tus fechas', left: 'Solo quedan {n}', soldOut: 'Completo', choose: 'Elegir', total: 'Total estancia',
+      available: 'Disponibles para tus fechas', left: 'Solo quedan {n}', left1: 'Solo queda 1', soldOut: 'Completo', choose: 'Elegir', total: 'Total estancia',
       tax: 'Impuesto turístico (se paga en el alojamiento): ≈ {x}', other: 'En otras plataformas', save: 'Ahorras {x}',
       change: 'Cambiar fechas', next: 'Continuar', backBtn: 'Atrás',
       form: { name: 'Nombre y apellidos', email: 'Email', country: 'País', phone: 'Teléfono', time: 'Hora prevista de llegada', notes: 'Peticiones especiales (opcional)', accept: 'Acepto las condiciones de reserva (demo)', confirm: 'Confirmar reserva (demo)' },
       summary: 'Tu reserva', guests: 'Huéspedes', dates: 'Fechas',
       done: '¡Reserva simulada!', doneText: 'Así vería tu cliente la confirmación. En la web real recibiría al momento un email con todos los detalles y las indicaciones de llegada.', locator: 'Localizador', newSearch: 'Nueva búsqueda',
-      priceNote: 'Precios de ejemplo. Temporada de abril a octubre.', needDates: 'Elige fecha de llegada y de salida', needAll: 'Completa los campos obligatorios'
+      priceNote: 'Precios de ejemplo. Temporada de abril a octubre.', needDates: 'Elige fecha de llegada y de salida', minStay: 'Estancia mínima: {n} noches', liveNote: 'Calendario, precios y disponibilidad reales leídos de Beds24 (propiedad de prueba con precios de ejemplo). Actualizado: {t}. El último paso, la confirmación, sigue siendo simulado.', needAll: 'Completa los campos obligatorios'
     }
   },
 
@@ -162,13 +162,13 @@ window.I18N = {
       notice: 'Auf der finalen Website wird hier ein professionelles Buchungssystem eines externen Anbieters (z. B. Beds24) eingebunden – verbunden mit Booking.com, mit sicherer Zahlung und Berechnung der Touristensteuer. Diese Demo sendet keine Daten und führt keine Zahlungen durch.',
       title: 'Ihren Aufenthalt buchen', steps: ['Daten', 'Unterkunft', 'Ihre Angaben', 'Bestätigung'],
       selectIn: 'Anreisedatum wählen', selectOut: 'Jetzt das Abreisedatum', closed: 'Saisonbedingt geschlossen', nights: 'Nächte', night1: 'Nacht',
-      available: 'Verfügbar für Ihre Daten', left: 'Nur noch {n} frei', soldOut: 'Ausgebucht', choose: 'Auswählen', total: 'Gesamtpreis',
+      available: 'Verfügbar für Ihre Daten', left: 'Nur noch {n} frei', left1: 'Nur noch 1 frei', soldOut: 'Ausgebucht', choose: 'Auswählen', total: 'Gesamtpreis',
       tax: 'Touristensteuer (vor Ort zu zahlen): ≈ {x}', other: 'Auf anderen Plattformen', save: 'Sie sparen {x}',
       change: 'Daten ändern', next: 'Weiter', backBtn: 'Zurück',
       form: { name: 'Vor- und Nachname', email: 'E-Mail', country: 'Land', phone: 'Telefon', time: 'Voraussichtliche Ankunftszeit', notes: 'Wünsche (optional)', accept: 'Ich akzeptiere die Buchungsbedingungen (Demo)', confirm: 'Buchung bestätigen (Demo)' },
       summary: 'Ihre Buchung', guests: 'Gäste', dates: 'Daten',
       done: 'Buchung simuliert!', doneText: 'So würde Ihr Gast die Bestätigung sehen. Auf der echten Website erhält er sofort eine E-Mail mit allen Details und Anreisehinweisen.', locator: 'Buchungsnummer', newSearch: 'Neue Suche',
-      priceNote: 'Beispielpreise. Saison von April bis Oktober.', needDates: 'Bitte An- und Abreisedatum wählen', needAll: 'Bitte alle Pflichtfelder ausfüllen'
+      priceNote: 'Beispielpreise. Saison von April bis Oktober.', needDates: 'Bitte An- und Abreisedatum wählen', minStay: 'Mindestaufenthalt: {n} Nächte', liveNote: 'Kalender, Preise und Verfügbarkeit sind echte Daten aus Beds24 (Testunterkunft mit Beispielpreisen). Stand: {t}. Der letzte Schritt, die Bestätigung, ist weiterhin simuliert.', needAll: 'Bitte alle Pflichtfelder ausfüllen'
     }
   },
 
@@ -248,13 +248,13 @@ window.I18N = {
       notice: 'On the final website, a professional booking engine from an external provider (e.g. Beds24) will be integrated here — connected to Booking.com, with secure payment and tourist tax calculation. This demo sends no data and takes no payments.',
       title: 'Book your stay', steps: ['Dates', 'Accommodation', 'Your details', 'Confirmation'],
       selectIn: 'Select your check-in', selectOut: 'Now, your check-out', closed: 'Closed for the season', nights: 'nights', night1: 'night',
-      available: 'Available for your dates', left: 'Only {n} left', soldOut: 'Sold out', choose: 'Select', total: 'Total stay',
+      available: 'Available for your dates', left: 'Only {n} left', left1: 'Only 1 left', soldOut: 'Sold out', choose: 'Select', total: 'Total stay',
       tax: 'Tourist tax (paid on site): ≈ {x}', other: 'On other platforms', save: 'You save {x}',
       change: 'Change dates', next: 'Continue', backBtn: 'Back',
       form: { name: 'Full name', email: 'Email', country: 'Country', phone: 'Phone', time: 'Estimated arrival time', notes: 'Special requests (optional)', accept: 'I accept the booking conditions (demo)', confirm: 'Confirm booking (demo)' },
       summary: 'Your booking', guests: 'Guests', dates: 'Dates',
       done: 'Booking simulated!', doneText: "This is the confirmation your guest would see. On the real website they'd instantly receive an email with all the details and arrival instructions.", locator: 'Booking reference', newSearch: 'New search',
-      priceNote: 'Example prices. Season from April to October.', needDates: 'Choose check-in and check-out dates', needAll: 'Please fill in the required fields'
+      priceNote: 'Example prices. Season from April to October.', needDates: 'Choose check-in and check-out dates', minStay: 'Minimum stay: {n} nights', liveNote: 'Calendar, prices and availability are real data read from Beds24 (test property with example prices). Updated: {t}. The last step, the confirmation, is still simulated.', needAll: 'Please fill in the required fields'
     }
   },
 
@@ -334,13 +334,13 @@ window.I18N = {
       notice: "Sur le site définitif, un moteur de réservation professionnel d'un prestataire externe (par ex. Beds24) sera intégré ici : connecté à Booking.com, avec paiement sécurisé et calcul de la taxe de séjour. Cette démo n'envoie aucune donnée et n'effectue aucun paiement.",
       title: 'Réservez votre séjour', steps: ['Dates', 'Hébergement', 'Vos coordonnées', 'Confirmation'],
       selectIn: 'Choisissez votre arrivée', selectOut: 'Maintenant, votre départ', closed: 'Fermé hors saison', nights: 'nuits', night1: 'nuit',
-      available: 'Disponibles pour vos dates', left: 'Plus que {n}', soldOut: 'Complet', choose: 'Choisir', total: 'Total du séjour',
+      available: 'Disponibles pour vos dates', left: 'Plus que {n}', left1: 'Plus qu’1 seul', soldOut: 'Complet', choose: 'Choisir', total: 'Total du séjour',
       tax: 'Taxe de séjour (à régler sur place) : ≈ {x}', other: 'Sur d’autres plateformes', save: 'Vous économisez {x}',
       change: 'Modifier les dates', next: 'Continuer', backBtn: 'Retour',
       form: { name: 'Nom et prénom', email: 'E-mail', country: 'Pays', phone: 'Téléphone', time: "Heure d'arrivée prévue", notes: 'Demandes particulières (facultatif)', accept: "J'accepte les conditions de réservation (démo)", confirm: 'Confirmer la réservation (démo)' },
       summary: 'Votre réservation', guests: 'Voyageurs', dates: 'Dates',
       done: 'Réservation simulée !', doneText: "Voici la confirmation que verrait votre client. Sur le vrai site, il recevrait immédiatement un e-mail avec tous les détails et les instructions d'arrivée.", locator: 'Numéro de réservation', newSearch: 'Nouvelle recherche',
-      priceNote: "Prix à titre d'exemple. Saison d'avril à octobre.", needDates: "Choisissez les dates d'arrivée et de départ", needAll: 'Veuillez remplir les champs obligatoires'
+      priceNote: "Prix à titre d'exemple. Saison d'avril à octobre.", needDates: "Choisissez les dates d'arrivée et de départ", minStay: 'Séjour minimum : {n} nuits', liveNote: 'Calendrier, prix et disponibilités réels issus de Beds24 (établissement de test avec des prix d’exemple). Mise à jour : {t}. La dernière étape, la confirmation, reste simulée.', needAll: 'Veuillez remplir les champs obligatoires'
     }
   }
 };

@@ -60,11 +60,21 @@
   const TODAY = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
   const splitLines = (lines) => lines.map(l => `<span class="line"><span>${l}</span></span>`).join('');
 
+  /* Datos reales de Beds24 (data/beds24.json, copia que actualiza GitHub Actions).
+     Si no cargan, la maqueta usa la temporada y los precios simulados. */
+  let LIVE = null;
+  const liveDay = (d) => LIVE && LIVE.days[iso(d)];
+  const liveCell = (type, d) => { const r = liveDay(d); return r ? r[LIVE.order.indexOf(type)] : null; };
+
   /* Temporada de abril a octubre */
-  const isOpen = (d) => d.getMonth() >= 3 && d.getMonth() <= 9;
+  const isOpen = (d) => {
+    if (LIVE) { const r = liveDay(d); return !!(r && r.some(c => c && c[0])); }
+    return d.getMonth() >= 3 && d.getMonth() <= 9;
+  };
   const tier = (d) => { const m = d.getMonth(); return (m === 6 || m === 7) ? 2 : (m === 4 || m === 5 || m === 8) ? 1 : 0; };
-  const nightPrice = (type, d) => { const b = TYPES[type].base[tier(d)]; const wk = d.getDay() === 5 || d.getDay() === 6; return Math.round(b * (wk ? 1.08 : 1)); };
+  const nightPrice = (type, d) => { const c = liveCell(type, d); if (LIVE) return c && c[0] ? c[0] : 0; const b = TYPES[type].base[tier(d)]; const wk = d.getDay() === 5 || d.getDay() === 6; return Math.round(b * (wk ? 1.08 : 1)); };
   const availOn = (type, d) => {
+    if (LIVE) { const c = liveCell(type, d); return c && c[0] ? Math.max(0, c[1]) : 0; }
     const idx = TYPE_KEYS.indexOf(type);
     const h = (d.getFullYear() * 373 + (d.getMonth() + 1) * 131 + d.getDate() * 17 + idx * 101 + d.getDate() * d.getDate()) % 100;
     const occ = [0.15, 0.45, 0.72][tier(d)] + (h / 100) * 0.35 + (type === 'duplex' ? 0.06 : 0);
@@ -78,7 +88,9 @@
       const rate = (d.getMonth() >= 10 || d.getMonth() <= 3) ? 0.55 : 2.2;
       tax += rate * adults * (i >= 8 ? 0.5 : 1);
     }
-    return { total, left: Math.max(0, min), tax, other: Math.round(total * 1.15 / 5) * 5 };
+    const first = liveCell(type, a), minStay = LIVE && first ? first[2] || 1 : 1;
+    const nights = nightsBetween(a, b);
+    return { total, left: nights < minStay ? 0 : Math.max(0, min), minStay: nights < minStay ? minStay : 0, tax, other: Math.round(total * 1.15 / 5) * 5 };
   };
 
   /* Estado compartido de la reserva */
@@ -432,6 +444,7 @@
   function pageBooking() {
     return `<section class="booking"><div class="container">
       <div class="notice reveal">${I.flask}<div><b>${T.booking.noticeTitle}</b><p>${T.booking.notice}</p></div></div>
+      ${LIVE ? `<div class="notice notice--live reveal">${I.check}<div><b>Beds24</b><p>${T.booking.liveNote.replace('{t}', fmtDate(new Date(LIVE.updated.replace('Z', ':00Z')), { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }))}</p></div></div>` : ''}
       <h1 class="h2 reveal" style="margin-top:2rem">${T.booking.title}</h1>
       <div class="steps js-steps"></div>
       <div class="bk-grid"><div class="js-bk-main"></div><aside class="panel summary js-bk-sum"></aside></div>
@@ -504,7 +517,7 @@
             <h3>${t.name}</h3>
             <p class="result__meta">${t.cap} · ${t.beds}</p>
             <p class="result__meta">${TYPES[k].feats.slice(0, 3).map(f => T.feat[f]).join(' · ')}</p>
-            ${sold ? `<span class="result__left">${capOk ? b.soldOut : t.cap}</span>` : (q.left <= 2 ? `<span class="result__left">${b.left.replace('{n}', q.left)}</span>` : '')}
+            ${sold ? `<span class="result__left">${!capOk ? t.cap : q.minStay ? b.minStay.replace('{n}', q.minStay) : b.soldOut}</span>` : (q.left <= 2 ? `<span class="result__left">${q.left === 1 ? b.left1 : b.left.replace('{n}', q.left)}</span>` : '')}
           </div>
           <div class="result__price">
             <div><s>${money(q.other)}</s><b>${money(q.total)}</b><small>${n} ${n === 1 ? b.night1 : b.nights} · ${T.apts.example}</small></div>
@@ -854,7 +867,11 @@
     const pref = (navigator.language || 'es').slice(0, 2);
     if (!parseRoute().lang) lang = LANGS.includes(pref) && location.search.includes('auto') ? pref : 'es';
     window.addEventListener('hashchange', go);
-    go();
+    const load = fetch('data/beds24.json?v=' + Date.now(), { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : null)
+      .then(j => { if (j && j.days && j.order) LIVE = j; })
+      .catch(() => {});
+    Promise.race([load, new Promise(r => setTimeout(r, 2500))]).then(go);
     const loader = $('.loader');
     if (REDUCED || !HAS_GSAP) { loader.remove(); return; }
     gsap.to(loader, { yPercent: -100, duration: 1, ease: 'expo.inOut', delay: 1.5, onComplete: () => loader.remove() });
